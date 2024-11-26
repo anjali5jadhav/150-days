@@ -1,0 +1,37 @@
+Q.Max Circular Subarray Sum
+
+ex:    Input: arr[] = [8, -8, 9, -9, 10, -11, 12]
+       Output: 22
+       Explanation: Starting from the last element of the array, i.e, 12, and moving in a circular fashion, we have max subarray as 12, 8, -8, 9, -9, 10, which gives maximum sum as 22.
+
+code:
+
+int circularSubarraySum(vector<int> &arr) {
+
+        int n   = arr.size();
+        int SUM = accumulate(begin(arr), end(arr), 0);
+        
+        int k_sum_min = arr[0];
+        int min_sum   = arr[0];
+        
+        int k_sum_max = arr[0];
+        int max_sum   = arr[0];
+        
+        for(int i = 1; i<n; i++)
+        {
+            min_sum   = min(arr[i]+min_sum, arr[i]);
+            k_sum_min = min(k_sum_min, min_sum);
+            
+            max_sum = max(arr[i]+max_sum, arr[i]);
+            k_sum_max = max(k_sum_max, max_sum);
+        }
+        
+        int circular_sum = SUM - k_sum_min;
+        
+        if(k_sum_max > 0)
+        {
+            return max(k_sum_max, circular_sum);
+        }
+        
+        return k_sum_max;
+    }
