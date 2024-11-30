@@ -1,0 +1,35 @@
+Q.Anagram
+
+ex : Input: s1 = "geeks", s2 = "kseeg"
+     Output: true
+     Explanation: Both the string have same characters with same frequency. So, they are anagrams.
+
+code :
+bool areAnagrams(string& s1, string& s2) {
+        
+        if (s1.length() != s2.length())
+        {
+            return false; 
+        }
+
+        std::unordered_map<char, int> charCount;
+
+    
+        for (char c : s1)
+        {
+            charCount[c]++;
+        }
+
+   
+        for (char c : s2)
+        {
+            charCount[c]--;
+            if (charCount[c] < 0) 
+            {
+                return false; 
+            }
+        }
+
+        return true; 
+        
+    }
