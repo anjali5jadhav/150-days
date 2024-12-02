@@ -1,0 +1,27 @@
+Q.Search Pattern (KMP-Algorithm)
+
+ex : Input: txt = "abcab", pat = "ab"
+     Output: [0, 3]
+     Explanation: The string "ab" occurs twice in txt, one starts at index 0 and the other at index 3. 
+
+code :
+vector<int> search(string& pat, string& txt) {
+        
+        int a=pat.size();
+        int b=txt.size();
+        
+        vector<int>ans;
+        for(int i=0;i<=b-a;i++)
+        {
+            if(txt[i]!=pat[0])
+            {
+                continue;
+            }
+            string st=txt.substr(i,a);
+            if(st==pat)
+            {
+                ans.push_back(i);
+            }
+        }
+        return ans;
+    }
