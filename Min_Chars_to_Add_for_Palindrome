@@ -1,0 +1,38 @@
+Q.Min Chars to Add for Palindrome
+
+ex : Input: s = "abc"
+     Output: 2
+     Explanation: Add 'b' and 'c' at front of above string to make it palindrome : "cbabc"
+
+code : 
+int minChar(string& s)
+    {
+        string rev = s;
+        reverse(rev.begin(), rev.end());
+    
+    
+        string combined = s + "#" + rev;
+    
+    
+        int n = combined.size();
+        vector<int> lps(n, 0);
+    
+        for (int i = 1; i < n; i++)
+        {
+            int j = lps[i - 1];
+        
+        
+            while (j > 0 && combined[i] != combined[j])
+                j = lps[j - 1];
+        
+       
+            if (combined[i] == combined[j])
+                j++;
+        
+            lps[i] = j;
+        }
+    
+    
+    return s.size() - lps.back();
+        
+    }
