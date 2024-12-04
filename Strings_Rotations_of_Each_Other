@@ -1,0 +1,9 @@
+Q.Strings Rotations of Each Other
+
+ex : Input: s1 = "abcd", s2 = "cdab"
+     Output: true
+     Explanation: After 2 right rotations, s1 will become equal to s2.
+
+code:
+def areRotations(self,s1,s2):
+         return s1 in s2+s2
