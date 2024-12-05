@@ -1,0 +1,11 @@
+Q.Sort 0s, 1s and 2s
+
+ex : Input: arr[] = [0, 1, 2, 0, 1, 2]
+     Output: [0, 0, 1, 1, 2, 2]
+     Explanation: 0s 1s and 2s are segregated into ascending order.
+
+code :
+  void sort012(vector<int>& arr) 
+  {
+      sort(arr.begin(),arr.end());
+  }
