@@ -1,0 +1,12 @@
+Q.Sorted and Rotated Minimum
+
+ex : Input: arr[] = [5, 6, 1, 2, 3, 4]
+     Output: 1
+     Explanation: 1 is the minimum element in the array.
+
+code :
+int findMin(vector<int>& arr) 
+{
+        sort(arr.begin(),arr.end());
+        return arr[0];
+}
