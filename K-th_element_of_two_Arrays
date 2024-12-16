@@ -1,0 +1,21 @@
+Q.K-th element of two Arrays
+
+ex :  Input: a[] = [2, 3, 6, 7, 9], b[] = [1, 4, 8, 10], k = 5
+      Output: 6
+      Explanation: The final combined sorted array would be [1, 2, 3, 4, 6, 7, 8, 9, 10]. The 5th element of this array is 6.
+
+code :
+int kthElement(vector<int>& a, vector<int>& b, int k)
+    {
+         vector<int> arr;
+        for (int i : a) 
+        {
+            arr.push_back(i);
+        }
+        for (int i : b) 
+        {
+            arr.push_back(i);
+        }
+        sort(arr.begin(), arr.end());
+        return arr[k - 1];
+    }
