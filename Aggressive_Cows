@@ -1,0 +1,49 @@
+Q.Aggressive Cows
+
+ex : Input: stalls[] = [1, 2, 4, 8, 9], k = 3
+     Output: 3
+     Explanation: The first cow can be placed at stalls[0], 
+     the second cow can be placed at stalls[2] and 
+     the third cow can be placed at stalls[3]. 
+     The minimum distance between cows, in this case, is 3, which also is the largest among all possible ways.
+
+code :
+bool canPlaceCows(vector<int> &stalls,int k,int dist)
+    {
+        int n = stalls.size();
+        int cntCow = 1;
+        int lastPos = stalls[0];
+        for(int i=1;i<n;i++)
+        {
+            if(stalls[i] - lastPos >= dist)
+            {
+                cntCow++; 
+                lastPos = stalls[i];
+            }
+            if(cntCow == k)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    int aggressiveCows(vector<int> &stalls, int k) 
+    {
+        int n = stalls.size();
+        sort(stalls.begin(),stalls.end());
+        int s = 1,e = stalls[n-1] - stalls[0];
+        while(s<=e)
+        {
+            int mid = s + ((e-s)/2);
+            if(canPlaceCows(stalls,k,mid))
+            {
+                s = mid+1;
+            }
+            else
+            {
+                e = mid - 1;
+            }
+        }
+        return e;
+    }  
