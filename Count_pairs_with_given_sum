@@ -1,0 +1,22 @@
+Q.Count pairs with given sum
+
+ex :  Input: arr[] = [1, 5, 7, -1, 5], target = 6 
+      Output: 3
+      Explanation: Pairs with sum 6 are (1, 5), (7, -1) and (1, 5). 
+
+code :
+int countPairs(vector<int> &arr, int target) {
+        
+        unordered_map<int , int>a;
+        int ans=0;
+        for(i:arr)
+        {
+            int k=target-i;
+            if(a[k] > 0)
+            {
+                ans+=a[k];
+            }
+            a[i]++;
+        }
+        return ans;
+    }
