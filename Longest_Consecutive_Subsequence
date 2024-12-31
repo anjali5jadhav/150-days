@@ -1,0 +1,31 @@
+Q.Longest Consecutive Subsequence
+
+ex :  Input: arr[] = [2, 6, 1, 9, 4, 5, 3]
+      Output: 6
+      Explanation: The consecutive numbers here are 1, 2, 3, 4, 5, 6. These 6 numbers form the longest consecutive subsquence.
+
+code :
+int longestConsecutive(vector<int>& arr) {
+        
+        if(arr.size()==0) return 0;
+
+        int lastNumber=INT_MIN;
+        int maxCount=1;
+        int count;
+
+        sort(arr.begin(),arr.end());
+        for(int i=0;i<arr.size();i++){
+            if(lastNumber==arr[i]-1){
+                count++;
+                lastNumber=arr[i];
+            }
+            else if(arr[i]>lastNumber){
+                 lastNumber=arr[i];
+                 count=1;
+            }
+            maxCount=max(maxCount,count);
+        }
+        return maxCount;
+        
+        
+    }
