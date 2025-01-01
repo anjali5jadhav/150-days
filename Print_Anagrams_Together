@@ -1,0 +1,26 @@
+Q.Print Anagrams Together
+
+ex : Input: arr[] = ["act", "god", "cat", "dog", "tac"]
+     Output: [["act", "cat", "tac"], ["god", "dog"]]
+     Explanation: There are 2 groups of anagrams "god", "dog" make group 1. "act", "cat", "tac" make group 2.
+
+code :
+vector<vector<string>> anagrams(vector<string>& arr)
+    {
+        unordered_map<string, vector<string>> anagramMap;
+
+    for (const string& str : arr) 
+    {
+        string sortedStr = str;
+        sort(sortedStr.begin(), sortedStr.end());  
+        anagramMap[sortedStr].push_back(str);      
+    }
+
+    vector<vector<string>> result;
+    for (const auto& entry : anagramMap) 
+    {
+        result.push_back(entry.second);            
+    }
+
+    return result;
+    }
