@@ -1,0 +1,37 @@
+Q.Sum Pair closest to target
+
+ex : Input: arr[] = [10, 30, 20, 5], target = 25
+     Output: [5, 20]
+     Explanation: As 5 + 20 = 25 is closest to 25.
+
+code :
+vector<int> sumClosest(vector<int>& arr, int target) {
+        sort(arr.begin(),arr.end());
+        int s=0,n=arr.size()-1;
+        int diff=INT_MAX;
+        vector<int>ans;
+        
+        while(s<n)
+        {
+            int pairsum=arr[s]+arr[n];
+            if(abs(target-pairsum)<diff)
+            {
+                diff=min(abs(target-pairsum),diff);
+                ans={arr[s],arr[n]};
+            }
+            if(pairsum < target)
+            {
+                s++;
+            }
+            else if(pairsum > target)
+            {
+                n--;
+            }
+            else
+            {
+                return ans;
+            }
+            
+            
+        }
+    }
