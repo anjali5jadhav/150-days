@@ -1,0 +1,54 @@
+Q.Pair with given sum in a sorted array
+
+ex : Input: arr[] = [-1, 1, 5, 5, 7], target = 6
+     Output: 3
+     Explanation: There are 2 pairs which sum up to 6 : {1, 5}, {1, 5} and {-1, 7}.
+
+code :
+int countPairs(vector<int> &arr, int target) 
+    {
+        int left = 0, right = arr.size() - 1, count = 0;
+
+        while (left < right) 
+        {
+            int sum = arr[left] + arr[right];
+
+            if (sum == target) 
+            {
+                if (arr[left] == arr[right]) 
+                {
+                    int freq = right - left + 1;
+                    count += (freq * (freq - 1)) / 2;
+                    break;
+                } 
+                else 
+                {
+                    int leftfreq = 1, rightfreq = 1;
+                    while (left + 1 < right && arr[left] == arr[left + 1]) 
+                    {
+                        leftfreq++;
+                        left++;
+                }
+                while (right - 1 > left && arr[right] == arr[right - 1]) 
+                {
+                    rightfreq++;
+                    right--;
+                }
+
+                count += leftfreq * rightfreq;
+                left++;
+                right--;
+            }
+        } 
+        else if (sum > target) 
+        {
+            right--;
+        } 
+        else 
+        {
+            left++;
+        }
+    }
+
+     return count;
+    }
