@@ -1,0 +1,30 @@
+Q.Indexes of Subarray Sum
+
+ex : Input: arr[] = [1, 2, 3, 7, 5], target = 12
+     Output: [2, 4]
+     Explanation: The sum of elements from 2nd to 4th position is 12.
+
+code :
+vector<int> subarraySum(vector<int> &arr, int target) {
+        
+        int n=arr.size();
+        int i=0,j=0,sum=0;
+        while(j<n)
+        {
+            sum+=arr[j];
+            if(sum>target)
+            {
+                while(i<=j && sum>target)
+                {
+                    sum-=arr[i];
+                    i++;
+                }
+            }
+            if(sum==target)
+            {
+                return {i+1,j+1};
+            }
+            j++;
+        }
+        return {-1};
+    }
