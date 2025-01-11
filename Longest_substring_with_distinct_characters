@@ -1,0 +1,29 @@
+Q.Longest substring with distinct characters
+
+ex :  Input: s = "geeksforgeeks"
+      Output: 7
+      Explanation: "eksforg" is the longest substring with all distinct characters.
+
+code : 
+int longestUniqueSubstr(string &s) {
+        
+        int ans = 1;
+        unordered_map<char, int> mp;
+        mp[s[0]] = 0; 
+        int left = 0;
+        for(int i = 1; i < s.length(); i++)
+        {
+            if(mp.find(s[i]) == mp.end() || mp[s[i]] < left)
+            {
+                mp[s[i]] = i;
+                ans = max(i - left + 1, ans);
+            }
+            else
+            {
+                left = mp[s[i]] + 1;
+                mp[s[i]] = i;
+                ans = max(i - left + 1, ans);
+            }
+        }
+        return ans;
+    }
