@@ -1,0 +1,29 @@
+Q.Container With Most Water
+
+ex :  Input: arr[] = [1, 5, 4, 3]
+      Output: 6
+      Explanation: 5 and 3 are 2 distance apart. So the size of the base is 2. Height of container = min(5, 3) = 3. So, total area to hold water = 3 * 2 = 6.
+
+code :  
+int maxWater(vector<int> &arr) {
+        int n=arr.size();
+        int maximum=0;
+        int left=0;
+        int right=n-1;
+        
+        while(left<right)
+        {
+            int value=min(arr[left],arr[right])*(right-left);
+            maximum=max(maximum,value);
+            
+            if(arr[left]<arr[right])
+            {
+                left++;
+            }
+            else
+            {
+                right--;
+            }
+        }
+        return maximum;
+    }
