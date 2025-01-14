@@ -1,0 +1,30 @@
+Q.Equilibrium Point
+
+ex : Input: arr[] = [1, 2, 0, 3]
+     Output: 2 
+     Explanation: The sum of left of index 2 is 1 + 2 = 3 and sum on right of index 2 is 0 + 3 = 3.
+
+code :
+int findEquilibrium(vector<int> &arr) {
+        int n=arr.size();
+        vector<int>pre(n,0),suf(n,0);
+        
+        int sum=0;
+        for(int i=0;i<n;i++)
+        {
+            pre[i]=sum;
+            sum+=arr[i];
+        }
+        sum=0;
+        for(int i=n-1;i>=0;i--)
+        {
+            suf[i]=sum;
+            sum+=arr[i];
+        }
+        for(int i=0;i<n;i++)
+        {
+            if(pre[i]==suf[i])
+            return i;
+        }
+        return -1;
+    }
