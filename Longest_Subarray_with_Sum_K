@@ -1,0 +1,32 @@
+Q.Longest Subarray with Sum K
+
+ex : Input: arr[] = [10, 5, 2, 7, 1, -10], k = 15
+     Output: 6
+     Explanation: Subarrays with sum = 15 are [5, 2, 7, 1], [10, 5] and [10, 5, 2, 7, 1, -10]. The length of the longest subarray with a sum of 15 is 6.
+
+Code:
+int longestSubarray(vector<int>& arr, int k) 
+    {
+         map<int, int> preSumMap;
+         int N =arr.size();
+        int sum = 0;
+        int maxLen = 0;
+        for (int i = 0; i < N; i++) 
+        {
+            sum += arr[i];
+		    if (sum == k) {
+            maxLen = max(maxLen, i + 1);
+        }
+		int rem = sum - k;
+		if (preSumMap.find(rem) != preSumMap.end()) 
+		{
+            int len = i - preSumMap[rem];
+            maxLen = max(maxLen, len);
+        }
+		if (preSumMap.find(sum) == preSumMap.end())
+		{
+            preSumMap[sum] = i;
+        }
+    }
+	return maxLen;
+    }
