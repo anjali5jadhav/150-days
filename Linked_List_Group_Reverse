@@ -1,0 +1,28 @@
+Q.Linked List Group Reverse
+
+ex: Input: head = 1 -> 2 -> 2 -> 4 -> 5 -> 6 -> 7 -> 8, k = 4
+    Output: 4 -> 2 -> 2 -> 1 -> 8 -> 7 -> 6 -> 5
+
+Code :
+Node *reverseKGroup(Node *head, int k) {
+        
+        Node* near=new Node(-1);
+        Node* temp=head;
+        Node* near1=near;
+        while(temp!=NULL){
+            Node* it=temp,*prev=NULL,*nxt=NULL;
+            int cnt=1;
+            while(cnt<=k && it!=nullptr){
+                nxt=it->next;
+                it->next=prev;
+                prev=it;
+                it=nxt;
+                cnt++;
+            }
+            near->next=prev;
+            near=temp;
+            temp=it;
+        }
+        return near1->next;
+        
+    }
