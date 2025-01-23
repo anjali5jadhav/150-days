@@ -1,0 +1,28 @@
+Q.Clone List with Next and Random
+
+ex : Input: head = [[1, 3], [3, 3], [5, NULL], [9, 3]] 
+     Output: head = [[1, 3], [3, 3], [5, NULL], [9, 3]] 
+     Explanation: Node 1 points to Node 2 as its NEXT and Node 3 as its RANDOM.
+                  Node 2 points to Node 3 as its NEXT and Node 3 as its RANDOM.
+                  Node 3 points to Node 4 as its NEXT and NULL as its RANDOM.
+                  Node 4 points to NULL as its NEXT and Node 3 as its RANDOM.
+
+Code :
+ Node *cloneLinkedList(Node *head)
+    {
+        map<Node*,Node*> mp;
+        Node* ptr=head;
+        while(ptr)
+        {
+            mp[ptr]=new Node(ptr->data);
+            ptr=ptr->next;
+        }
+        ptr=head;
+        while(ptr)
+        {
+            mp[ptr]->next=mp[ptr->next];
+            mp[ptr]->random=mp[ptr->random];
+            ptr=ptr->next;
+        }
+        return mp[head];
+    }
