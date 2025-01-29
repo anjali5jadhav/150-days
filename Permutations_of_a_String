@@ -1,0 +1,16 @@
+Q.Permutations of a String
+
+ex : Input: s = "ABC"
+     Output: ["ABC", "ACB", "BAC", "BCA", "CAB", "CBA"]
+     Explanation: Given string ABC has 6 unique permutations.
+
+Code:
+ vector<string> findPermutation(string &s) 
+    {
+        sort(s.begin(),s.end());
+        vector<string> result;
+        do{
+            result.push_back(s);
+          } while(next_permutation(s.begin(),s.end()));
+        return result;
+    }
