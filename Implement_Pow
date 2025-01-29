@@ -1,0 +1,9 @@
+Q.Implement Pow
+
+ex : Input: b = 3.00000, e = 5
+     Output: 243.00000
+
+Code:
+ double power(double b, int e) {
+        return Math.pow(b,e);
+    }
